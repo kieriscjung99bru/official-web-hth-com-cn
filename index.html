@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华体会 · 从容启程</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+      background: linear-gradient(145deg, #fce9d8 0%, #fde9cc 45%, #f7dbb5 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+      color: #3d2e22;
+    }
+
+    .card {
+      max-width: 780px;
+      width: 100%;
+      background: #fffcf7;
+      border-radius: 40px 40px 32px 32px;
+      box-shadow: 0 18px 40px -12px rgba(120, 70, 40, 0.26),
+                  0 6px 14px rgba(0, 0, 0, 0.04);
+      padding: 2.8rem 2.6rem;
+      transition: box-shadow 0.25s ease;
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(255, 235, 210, 0.5);
+    }
+
+    @media (max-width: 580px) {
+      .card {
+        padding: 2rem 1.4rem;
+        border-radius: 28px;
+      }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: #ffe8d4;
+      color: #8b5a35;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #f3d7bb;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #4f3422;
+      margin-bottom: 0.8rem;
+      letter-spacing: 1px;
+      line-height: 1.3;
+    }
+
+    .opening {
+      font-size: 1.1rem;
+      background: #fbf3ea;
+      padding: 0.9rem 1.3rem;
+      border-radius: 20px;
+      margin: 1rem 0 1.8rem 0;
+      border-left: 5px solid #e7b68a;
+      color: #3d2c1e;
+    }
+
+    .intro-text {
+      font-size: 1.02rem;
+      margin-bottom: 1.6rem;
+      color: #4f3b2b;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.2rem;
+      margin: 2rem 0 1.8rem;
+    }
+
+    .feature-item {
+      background: #f9eee4;
+      border-radius: 40px;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.98rem;
+      color: #4d3625;
+      border: 1px solid #edd9c6;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(160, 100, 60, 0.04);
+    }
+
+    .feature-item:hover {
+      background: #f2e0d0;
+      border-color: #dbb99a;
+      transform: translateY(-2px);
+    }
+
+    .feature-item::before {
+      content: "· ";
+      color: #b6845e;
+      font-weight: 600;
+    }
+
+    .story-connect {
+      background: #faf0e7;
+      padding: 1.4rem 1.6rem;
+      border-radius: 24px;
+      margin: 1.8rem 0 1.5rem;
+      border: 1px solid #edd6c0;
+    }
+
+    .story-connect p {
+      margin-bottom: 0.75rem;
+    }
+
+    .story-connect p:last-child {
+      margin-bottom: 0;
+    }
+
+    .link-sentence {
+      font-size: 1.04rem;
+      background: #fff3e9;
+      padding: 1rem 1.5rem;
+      border-radius: 60px;
+      margin: 1.2rem 0 1.8rem;
+      text-align: center;
+      border: 1px solid #f1d8c0;
+    }
+
+    a {
+      color: #9f6d44;
+      text-decoration: none;
+      font-weight: 550;
+      padding: 0.1rem 0.25rem;
+      border-radius: 12px;
+      transition: background 0.2s, color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    a:hover {
+      background: #edd6c2;
+      color: #6d452a;
+      border-bottom-color: #b78b68;
+    }
+
+    .ending-note {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed #e5cdb8;
+      font-size: 0.98rem;
+      color: #5a4231;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .badge {
+      background: #f0ddce;
+      border-radius: 30px;
+      padding: 0.1rem 1rem;
+      font-size: 0.85rem;
+      color: #674e39;
+      letter-spacing: 0.2px;
+    }
+
+    .faq-mini {
+      margin: 2rem 0 0.5rem;
+    }
+
+    .faq-mini details {
+      background: #fcf4ec;
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      margin-bottom: 0.6rem;
+      border: 1px solid #ead6c2;
+      transition: 0.2s;
+    }
+
+    .faq-mini details[open] {
+      background: #f7e9dd;
+    }
+
+    .faq-mini summary {
+      font-weight: 530;
+      color: #5b3f2b;
+      cursor: pointer;
+      padding: 0.2rem 0;
+    }
+
+    .faq-mini details p {
+      margin: 0.6rem 0 0.3rem;
+      padding-left: 0.3rem;
+      color: #4b3728;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8d3bf;
+      margin: 0.8rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hero-tag">◈ 一隅温暖 · 如常</div>
+    <h1>在流动的日常里，<br>找到一份安定。</h1>
+
+    <div class="opening">
+      起初只是需要一个可靠的方向。后来发现，<br>
+      让人安心的，往往是那些始终在线、不曾偏离的陪伴。
+    </div>
+
+    <p class="intro-text">
+      对于常在网上停驻的人来说，站点是否清晰、响应是否从容，会直接影响体验的质感。<strong>华体会</strong>这个名字在近些年逐渐沉淀下来——不是因为铺张的宣告，而是因为它始终以平稳的方式，为使用者提供一块可以随时落脚的界面。
+    </p>
+
+    <p class="intro-text">
+      从最初的内容聚合到如今的结构化呈现，它的演进保持着一种温和的节奏：不堆叠冗余，不追逐浮夸，只是把该做的事做妥帖。访客在浏览时能感受到一种克制的顺畅——没有突兀的跳转，没有令人困惑的干扰。
+    </p>
+
+    <!-- 特点列表：用 flex 卡片式展示 -->
+    <div class="feature-grid">
+      <span class="feature-item">信息层级分明</span>
+      <span class="feature-item">响应轻快</span>
+      <span class="feature-item">界面素雅</span>
+      <span class="feature-item">持续维护更新</span>
+    </div>
+
+    <div class="story-connect">
+      <p>
+        或许你是在某个安静的时刻第一次遇见它，又或许是通过朋友的随口提及。无论哪一种，都不妨给自己一点时间，慢慢看一看它的模样。它不会催促你做任何决定，只是安静地待在那里，像一个老朋友一样。
+      </p>
+      <p>
+        如果你感兴趣，可以顺着下面的句子，去了解这个始终如一的地方。
+      </p>
+    </div>
+
+    <!-- 自然嵌入链接，文字严格等于「华体会」 -->
+    <div class="link-sentence">
+      若想进一步了解，不妨直接前往 <a href="https://official-web-hth.com.cn">华体会</a> ，看看它是否契合你的需要。
+    </div>
+
+    <!-- 简短的 FAQ 摘要，增加内容层次 -->
+    <div class="faq-mini">
+      <details>
+        <summary>华体会主要提供什么？</summary>
+        <p>它是一个以信息整合与浏览体验为核心的站点，注重内容的清晰呈现与访问的稳定性，不设复杂门槛，适合日常使用。</p>
+      </details>
+      <details>
+        <summary>访问时需要注意什么？</summary>
+        <p>建议使用主流浏览器以获得最佳显示效果。站点未采用激进追踪技术，可放心浏览。</p>
+      </details>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="ending-note">
+      <span>慢慢来，比较快。</span>
+      <span class="badge">✦ 持续生长中</span>
+    </div>
+
+    <!-- 微小分隔，增加呼吸感 -->
+    <hr>
+
+    <div style="margin-top: 0.8rem; font-size: 0.9rem; color: #7a604b; text-align: center; opacity: 0.7;">
+      一份简单的介绍 · 愿你用得从容
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kieriscjung99bru.github.io/official-web-hth-com-cn/sitemap.xml

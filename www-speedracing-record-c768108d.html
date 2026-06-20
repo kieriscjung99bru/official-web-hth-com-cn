@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极速赛车 · 站点知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fbe9d7 0%, #f7d9be 50%, #efc8a6 100%);
+            font-family: "Noto Sans SC", "PingFang SC", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1.5rem 3rem;
+            color: #2e241e;
+        }
+
+        .page {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 主体卡片容器 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 2.2rem;
+            padding: 2rem 2.4rem;
+            box-shadow: 0 12px 28px -8px rgba(110, 70, 40, 0.20), 0 4px 12px rgba(0,0,0,0.04);
+            transition: box-shadow 0.25s, transform 0.2s;
+            border: 1px solid #f4e0cf;
+        }
+
+        .card:hover {
+            box-shadow: 0 18px 36px -12px rgba(90, 55, 30, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* 头部 / hero 区 */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #fffffffa;
+            border-radius: 2.2rem;
+            padding: 2.8rem 2rem 2.4rem;
+            margin-bottom: 0.2rem;
+            box-shadow: 0 12px 28px -8px rgba(110, 70, 40, 0.18);
+            border: 1px solid #f4e0cf;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #4f3120;
+            background: linear-gradient(135deg, #a1582c, #7d4623);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #5e4030;
+            background: #f4e2d2;
+            display: inline-block;
+            padding: 0.2rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.6px;
+            margin-top: 0.2rem;
+        }
+
+        .hero p {
+            margin-top: 1.2rem;
+            max-width: 700px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #3d2b1f;
+        }
+
+        /* 目录感布局：两列或三列 */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.6rem;
+        }
+
+        .dir-item {
+            background: #fffcf8;
+            padding: 1.5rem 1.7rem;
+            border-radius: 1.8rem;
+            border-left: 6px solid #d99f72;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.15s;
+        }
+
+        .dir-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #6b3f24;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dir-item p {
+            font-size: 0.96rem;
+            line-height: 1.6;
+            color: #3f2f23;
+        }
+
+        .dir-item .tag {
+            background: #ecd7c2;
+            border-radius: 40px;
+            padding: 0.2rem 0.9rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #4f301c;
+            display: inline-block;
+            margin-top: 0.6rem;
+        }
+
+        /* 提示区 + 相关信息 */
+        .info-pair {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+        }
+
+        .info-pair > * {
+            flex: 1 1 260px;
+        }
+
+        .notice-box {
+            background: #fcf3ea;
+            border-radius: 2rem;
+            padding: 1.6rem 2rem;
+            border-left: 6px solid #ba7b50;
+        }
+
+        .notice-box h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #633f28;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        .notice-box ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+
+        .notice-box li {
+            padding: 0.25rem 0;
+            font-size: 0.98rem;
+            color: #3d2c1e;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 1.3rem;
+        }
+
+        .notice-box li::before {
+            content: "•";
+            color: #b87345;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .faq-abstract {
+            background: #fffcf6;
+            border-radius: 2rem;
+            padding: 1.6rem 2rem;
+            border-left: 6px solid #cf9d74;
+        }
+
+        .faq-abstract h4 {
+            font-weight: 600;
+            color: #633f28;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-item strong {
+            color: #7a4d2d;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #3f2f23;
+            line-height: 1.5;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #b46d3d;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.1rem 0.2rem;
+            border-radius: 12px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            background: #e7cbb5;
+            color: #502f18;
+        }
+
+        .link-button {
+            display: inline-block;
+            background: #e9d0bb;
+            color: #3b2619;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid #dec1a8;
+            box-shadow: 0 2px 8px rgba(90, 50, 20, 0.08);
+        }
+
+        .link-button:hover {
+            background: #dbb697;
+            color: #2d1b0f;
+            transform: scale(1.01);
+            border-color: #ba8b66;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2.4rem;
+            font-size: 0.9rem;
+            color: #6b5240;
+            border-top: 1px solid #e2ccb9;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body { padding: 1.2rem 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .hero { padding: 2rem 1.2rem; }
+            .directory-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero 介绍区 -->
+    <div class="hero">
+        <h1>⚡ 极速赛车 · 信息库</h1>
+        <span class="sub">站点导览 · 可信说明</span>
+        <p>欢迎来到 <a href="https://www-speedracing.com">极速赛车</a> 的知识库入口页。这里汇集了关于该平台的基础介绍、功能特点、使用场景以及常见问题摘要，方便你快速了解站点全貌。内容基于公开资料整理，力求客观、温和，帮助你建立初步认知。</p>
+        <div style="margin-top: 1.4rem;">
+            <a href="https://www-speedracing.com" class="link-button">极速赛车</a>
+        </div>
+    </div>
+
+    <!-- 目录感：卡片网格（说明区） -->
+    <div class="card-grid">
+        <div class="card">
+            <h2 style="font-size:1.5rem; font-weight:600; color:#4f3120; margin-bottom:1rem;">📋 站点介绍 · 内容目录</h2>
+            <div class="directory-grid">
+                <div class="dir-item">
+                    <h3>🏎️ 主要定位</h3>
+                    <p>一个聚焦赛车资讯、赛事动态与驾驶文化的线上平台，提供及时的信息聚合与社区交流空间。</p>
+                    <span class="tag">核心方向</span>
+                </div>
+                <div class="dir-item">
+                    <h3>📡 资讯覆盖</h3>
+                    <p>涵盖方程式、拉力赛、电动方程式、耐力赛等多类赛事，同时包含赛道评测与车辆解析内容。</p>
+                    <span class="tag">内容广度</span>
+                </div>
+                <div class="dir-item">
+                    <h3>🧭 使用场景</h3>
+                    <p>适合赛车爱好者、行业从业者以及希望了解赛车运动的新手，作为日常信息获取或深度阅读的起点。</p>
+                    <span class="tag">适用人群</span>
+                </div>
+                <div class="dir-item">
+                    <h3>🔐 可信说明</h3>
+                    <p>平台信息来源于合作媒体、官方渠道及用户贡献，同时设有基础审核流程，尽力保障内容真实可靠。</p>
+                    <span class="tag">信源原则</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示区 + 相关信息区（FAQs 摘要） -->
+        <div class="info-pair">
+            <div class="notice-box">
+                <h4>💡 使用提示</h4>
+                <ul>
+                    <li>浏览时留意内容标注的日期与来源，部分赛事信息具有时效性。</li>
+                    <li>社区讨论版内容由用户生成，建议结合官方公告交叉验证。</li>
+                    <li>网站页面适配移动端，可随时随地方便查阅。</li>
+                    <li>如发现信息偏差，可通过站内反馈渠道告知。</li>
+                </ul>
+            </div>
+            <div class="faq-abstract">
+                <h4>❓ 常见问题摘要</h4>
+                <div class="faq-item">
+                    <strong>是否需要注册？</strong>
+                    <p>浏览大部分内容无需注册；部分互动功能（评论、收藏）需免费创建账号。</p>
+                </div>
+                <div class="faq-item">
+                    <strong>内容更新频率？</strong>
+                    <p>赛事期间通常每日更新，休赛期保持每周 3–5 篇原创或编译内容。</p>
+                </div>
+                <div class="faq-item">
+                    <strong>是否提供赛事直播？</strong>
+                    <p>平台主要提供图文资讯与数据，不直接提供直播信号，但会汇总官方收看渠道。</p>
+                </div>
+                <div style="margin-top:0.7rem; font-size:0.9rem; color:#70553d;">更多细节可至 <a href="https://www-speedracing.com">极速赛车</a> 内查阅。</div>
+            </div>
+        </div>
+
+        <!-- 附加：特点与氛围简述 -->
+        <div class="card" style="background: #fffbf7;">
+            <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center;">
+                <div style="flex: 1 1 200px;">
+                    <h3 style="color:#4f3120; font-size:1.3rem; margin-bottom:0.3rem;">📌 站点氛围</h3>
+                    <p style="color:#3f2f23; line-height:1.7;">整体风格偏向专业与克制，不刻意渲染情绪，注重信息密度与可读性。文章篇幅适中，适合日常碎片化阅读或专题深入研究。</p>
+                </div>
+                <div style="flex: 1 1 200px; background: #f1e2d3; border-radius: 2rem; padding:1.2rem 1.6rem;">
+                    <span style="font-weight:600; color:#633f28;">📅 近期专题</span>
+                    <ul style="margin-top:0.5rem; list-style:none; padding-left:0; font-size:0.93rem; color:#3d2c1e;">
+                        <li>• 赛季回顾与技术规则解读</li>
+                        <li>• 电动赛车发展现状</li>
+                        <li>• 赛道安全演变简史</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部信息区 -->
+    <div class="footer-note">
+        <span>内容参考自公开资料 · 旨在提供信息索引</span><br>
+        <span style="display:inline-block; margin-top:0.5rem;">了解更多请访问 <a href="https://www-speedracing.com" style="background:#e1c8b2; padding:0.2rem 1rem; border-radius:40px;">极速赛车</a></span>
+    </div>
+</div>
+</body>
+</html>
